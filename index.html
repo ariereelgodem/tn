@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ARRIÈRE EL GODEM — Toujours en avant.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="image" href="images/IMG_6215.jpg" />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+/* ─── RESET & BASE ──────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black:     #080808;
+  --off-black: #111;
+  --dark:      #181818;
+  --mid:       #2a2a2a;
+  --border:    #222;
+  --muted:     #666;
+  --silver:    #aaa;
+  --white:     #f4f4f4;
+  --pure:      #fff;
+  --gold:      #c9a96e;
+  --gold-l:    #e2c98f;
+  --ff-display: 'Bebas Neue', sans-serif;
+  --ff-serif:   'DM Serif Display', serif;
+  --ff-body:    'Inter', sans-serif;
+  --ease:     cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--ff-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--ff-body); border: none; background: none; }
+
+/* ─── SCROLLBAR ─────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--mid); }
+
+/* ─── ANNOUNCE BAR ──────────────────────────────── */
+.announce {
+  background: var(--white);
+  color: var(--black);
+  text-align: center;
+  padding: 10px 1rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 100;
+}
+
+/* ─── NAV ───────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 68px;
+  background: rgba(8,8,8,0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: border-bottom-color 0.3s;
+}
+.nav-logo { font-family: var(--ff-display); font-size: 22px; letter-spacing: 0.1em; color: var(--white); }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--silver);
+  transition: color 0.2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: var(--gold);
+  transition: width 0.3s var(--ease);
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  padding: 10px 22px; background: var(--white); color: var(--black);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold); }
+.hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+.hamburger span {
+  display: block; width: 24px; height: 1px;
+  background: var(--white); transition: transform 0.3s, opacity 0.3s;
+}
+.mobile-menu {
+  display: none; position: fixed; inset: 0;
+  background: var(--black); z-index: 80;
+  flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--ff-display); font-size: 36px;
+  letter-spacing: 0.1em; color: var(--white); transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--gold); }
+
+/* ─── HERO ──────────────────────────────────────── */
+.hero {
+  position: relative; min-height: 100svh;
+  display: grid; place-items: center; overflow: hidden;
+}
+.hero-bg { position: absolute; inset: 0; background: var(--off-black); }
+.hero-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,8,8,0.15) 0%,
+    rgba(8,8,8,0.5) 55%,
+    rgba(8,8,8,0.92) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 2rem; max-width: 900px;
+  animation: heroFadeIn 1.2s var(--ease-out) both;
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.35); padding: 6px 18px;
+  margin-bottom: 2rem; animation: heroFadeIn 1.2s 0.2s var(--ease-out) both;
+}
+.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(52px, 10vw, 120px);
+  line-height: 0.92; letter-spacing: 0.04em; color: var(--white);
+  text-transform: uppercase; animation: heroFadeIn 1.2s 0.35s var(--ease-out) both;
+}
+.hero-subtitle {
+  font-family: var(--ff-serif); font-style: italic;
+  font-size: clamp(16px, 2.5vw, 22px); color: var(--gold-l);
+  margin: 1.2rem 0 1.5rem; animation: heroFadeIn 1.2s 0.5s var(--ease-out) both;
+}
+.hero-desc {
+  font-size: 14px; font-weight: 300; color: var(--silver);
+  max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.75;
+  animation: heroFadeIn 1.2s 0.65s var(--ease-out) both;
+}
+.btn-hero {
+  display: inline-block; padding: 16px 44px;
+  background: var(--white); color: var(--black);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.25em;
+  text-transform: uppercase; transition: background 0.25s, transform 0.2s;
+  animation: heroFadeIn 1.2s 0.8s var(--ease-out) both;
+}
+.btn-hero:hover { background: var(--gold); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute; bottom: 2rem; left: 50%;
+  transform: translateX(-50%); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 9px; letter-spacing: 0.3em;
+  text-transform: uppercase; animation: heroFadeIn 1.5s 1.2s var(--ease-out) both;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 0.9; transform: scaleY(1.2); }
+}
+
+/* ─── SECTION COMMONS ───────────────────────────── */
+section { padding: 7rem 3rem; }
+.sec-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.45em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.sec-title {
+  font-family: var(--ff-display);
+  font-size: clamp(36px, 6vw, 72px);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  line-height: 1; color: var(--white); margin-bottom: 1.5rem;
+}
+.sec-body {
+  font-size: 14px; font-weight: 300; color: var(--silver);
+  line-height: 1.8; max-width: 520px;
+}
+.divider { width: 40px; height: 1px; background: var(--gold); margin: 1.5rem 0; }
+
+/* ─── REVEAL ────────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── ABOUT / PREMIER DROP ──────────────────────── */
+.about-drop {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.about-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 6rem; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.about-visual {
+  height: 520px; background: var(--mid);
+  position: relative; overflow: hidden;
+}
+.about-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.6s var(--ease);
+}
+.about-visual:hover img { transform: scale(1.04); }
+.about-visual::after {
+  content: 'PREMIER DROP';
+  position: absolute; bottom: 1.5rem; left: 1.5rem;
+  font-family: var(--ff-display); font-size: 11px;
+  letter-spacing: 0.3em; color: rgba(201,169,110,0.6);
+  z-index: 2;
+}
+.about-list {
+  list-style: none; margin-top: 2rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.about-list li {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px; color: var(--silver); font-weight: 300;
+}
+.about-list li::before {
+  content: ''; width: 20px; height: 1px;
+  background: var(--gold); flex-shrink: 0;
+}
+
+/* ─── PRODUCT ───────────────────────────────────── */
+.product-section { background: var(--black); }
+.product-inner { max-width: 1100px; margin: 0 auto; }
+.product-card {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 0; border: 1px solid var(--border);
+}
+.product-img-wrap {
+  position: relative; background: var(--dark);
+  min-height: 580px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.product-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.6s var(--ease);
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.product-img-wrap:hover img { transform: scale(1.03); }
+.product-badge {
+  position: absolute; top: 1.5rem; left: 1.5rem;
+  background: var(--white); color: var(--black);
+  font-size: 9px; font-weight: 700; letter-spacing: 0.25em;
+  text-transform: uppercase; padding: 5px 14px; z-index: 2;
+}
+.product-info {
+  padding: 3.5rem; display: flex; flex-direction: column;
+  justify-content: center; background: var(--dark);
+  border-left: 1px solid var(--border);
+}
+.product-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+}
+.product-name {
+  font-family: var(--ff-display);
+  font-size: clamp(28px, 3vw, 42px);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  line-height: 1; color: var(--white); margin-bottom: 0.5rem;
+}
+.product-price {
+  font-family: var(--ff-serif); font-size: 28px;
+  color: var(--gold); margin: 1rem 0 1.5rem;
+}
+.product-features {
+  list-style: none; display: flex; flex-direction: column;
+  gap: 8px; margin-bottom: 2rem;
+}
+.product-features li {
+  font-size: 13px; font-weight: 300; color: var(--silver);
+  display: flex; align-items: center; gap: 10px;
+}
+.product-features li::before {
+  content: ''; width: 16px; height: 1px;
+  background: var(--gold); flex-shrink: 0;
+}
+.size-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem;
+}
+.size-options { display: flex; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap; }
+.size-btn {
+  width: 44px; height: 44px; border: 1px solid var(--border);
+  background: transparent; font-size: 12px; font-weight: 600;
+  color: var(--silver); letter-spacing: 0.05em;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  font-family: var(--ff-body);
+}
+.size-btn:hover, .size-btn.active {
+  border-color: var(--white); color: var(--black); background: var(--white);
+}
+.btn-order {
+  width: 100%; padding: 16px; background: var(--white); color: var(--black);
+  font-size: 12px; font-weight: 700; letter-spacing: 0.25em;
+  text-transform: uppercase; transition: background 0.25s, transform 0.15s;
+}
+.btn-order:hover { background: var(--gold); transform: translateY(-2px); }
+
+/* ─── GALLERY ───────────────────────────────────── */
+.gallery-section {
+  background: var(--off-black);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.gallery-header {
+  max-width: 1200px; margin: 0 auto 3rem;
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.gallery-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.gallery-item {
+  position: relative; overflow: hidden;
+  cursor: pointer; background: var(--dark);
+  aspect-ratio: 1;
+}
+.gallery-item:nth-child(1) { grid-row: auto; }
+.gallery-img-wrap {
+  width: 100%; height: 100%; overflow: hidden;
+  background: var(--mid); position: relative;
+}
+.gallery-item:nth-child(1) .gallery-img-wrap { height: 100%; }
+.gallery-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.55s var(--ease);
+  display: block;
+}
+.gallery-item:hover .gallery-img-wrap img { transform: scale(1.06); }
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,8,8,0); transition: background 0.3s;
+  display: flex; align-items: center; justify-content: center; z-index: 2;
+}
+.gallery-item:hover .gallery-overlay { background: rgba(8,8,8,0.35); }
+.gallery-num {
+  font-family: var(--ff-display); font-size: 48px;
+  color: rgba(255,255,255,0); letter-spacing: 0.05em; transition: color 0.3s;
+}
+.gallery-item:hover .gallery-num { color: rgba(255,255,255,0.2); }
+
+/* ─── SOCIAL ────────────────────────────────────── */
+.social-section { background: var(--black); text-align: center; }
+.social-grid {
+  display: flex; justify-content: center;
+  gap: 2rem; margin-top: 3rem; flex-wrap: wrap;
+}
+.social-card {
+  width: 180px; padding: 2rem 1.5rem;
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  cursor: pointer; transition: border-color 0.25s, transform 0.25s;
+  text-decoration: none; color: inherit;
+}
+.social-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.social-icon {
+  width: 48px; height: 48px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.25s;
+}
+.social-card:hover .social-icon { border-color: var(--gold); }
+.social-handle {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--silver); transition: color 0.25s;
+}
+.social-card:hover .social-handle { color: var(--gold); }
+.social-name { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+
+/* ─── NEWSLETTER ────────────────────────────────── */
+.newsletter-section {
+  background: var(--dark); border-top: 1px solid var(--border); text-align: center;
+}
+.newsletter-form { display: flex; gap: 0; max-width: 460px; margin: 2.5rem auto 0; }
+.newsletter-form input {
+  flex: 1; padding: 15px 20px; background: var(--black);
+  border: 1px solid var(--border); border-right: none; color: var(--white);
+  font-family: var(--ff-body); font-size: 13px; outline: none; transition: border-color 0.2s;
+}
+.newsletter-form input::placeholder { color: var(--muted); }
+.newsletter-form input:focus { border-color: var(--gold); }
+.btn-subscribe {
+  padding: 15px 28px; background: var(--white); color: var(--black);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; white-space: nowrap; transition: background 0.2s;
+}
+.btn-subscribe:hover { background: var(--gold); }
+
+/* ─── REVIEWS ───────────────────────────────────── */
+.reviews-section { background: var(--black); }
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; max-width: 1100px; margin: 3rem auto 0;
+  border: 1px solid var(--border);
+}
+.review-card {
+  padding: 2.5rem 2rem; background: var(--dark);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.review-card:last-child { border-right: none; }
+.review-stars { display: flex; gap: 4px; }
+.star {
+  width: 12px; height: 12px; background: var(--gold);
+  clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.review-text {
+  font-size: 13px; font-weight: 300; color: var(--silver);
+  line-height: 1.75; font-style: italic;
+}
+.review-author { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.review-avatar {
+  width: 36px; height: 36px; background: var(--mid);
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; font-size: 11px; font-weight: 600; color: var(--muted);
+}
+.review-name {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--silver);
+}
+.review-placeholder { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--border); }
+
+/* ─── FOOTER ────────────────────────────────────── */
+footer { background: var(--off-black); border-top: 1px solid var(--border); padding: 4rem 3rem 2rem; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border);
+}
+.footer-brand { font-family: var(--ff-display); font-size: 28px; letter-spacing: 0.08em; color: var(--white); margin-bottom: 1rem; }
+.footer-brand span { color: var(--gold); }
+.footer-tagline { font-family: var(--ff-serif); font-style: italic; font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; }
+.footer-contact { font-size: 12px; color: var(--muted); }
+.footer-contact a { transition: color 0.2s; }
+.footer-contact a:hover { color: var(--gold); }
+.footer-heading { font-size: 10px; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+.footer-links a { font-size: 13px; color: var(--muted); transition: color 0.2s; }
+.footer-links a:hover { color: var(--white); }
+.footer-socials { display: flex; gap: 12px; margin-top: 1rem; }
+.footer-social {
+  width: 36px; height: 36px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s; text-decoration: none;
+}
+.footer-social:hover { border-color: var(--gold); background: rgba(201,169,110,0.08); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; flex-wrap: wrap; gap: 1rem; }
+.footer-copy { font-size: 11px; color: var(--border); letter-spacing: 0.08em; }
+.footer-copy span { color: var(--muted); }
+
+/* ─── OLD POPUP (kept, hidden via JS override) ──── */
+.popup-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.88); z-index: 999;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.popup-overlay.active { display: flex; }
+.popup {
+  background: var(--dark); border: 1px solid var(--border);
+  max-width: 440px; width: 90%; padding: 3.5rem 3rem;
+  text-align: center; position: relative;
+  animation: popIn 0.35s var(--ease-out) both;
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.popup-close {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  background: none; border: none; color: var(--muted);
+  font-size: 20px; line-height: 1; cursor: pointer; transition: color 0.2s;
+}
+.popup-close:hover { color: var(--white); }
+.popup-icon {
+  width: 56px; height: 56px; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;
+}
+.popup-badge {
+  display: inline-block; font-size: 9px; font-weight: 700;
+  letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.3); padding: 5px 14px; margin-bottom: 1.5rem;
+}
+.popup-title {
+  font-family: var(--ff-display); font-size: 32px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--white); margin-bottom: 1rem;
+}
+.popup-divider { width: 30px; height: 1px; background: var(--gold); margin: 0 auto 1.5rem; }
+.popup-msg { font-size: 14px; font-weight: 300; color: var(--silver); line-height: 1.8; margin-bottom: 0.5rem; }
+.popup-msg strong { color: var(--white); font-weight: 500; }
+.btn-close-popup {
+  margin-top: 2rem; padding: 13px 36px;
+  border: 1px solid var(--border); background: transparent; color: var(--white);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; transition: border-color 0.2s, background 0.2s;
+}
+.btn-close-popup:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+/* ─── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 1024px) {
+  section { padding: 5rem 2rem; }
+  nav { padding: 0 2rem; }
+  .about-inner { gap: 3rem; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  section { padding: 4rem 1.5rem; }
+  .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-visual { height: 320px; }
+  .product-card { grid-template-columns: 1fr; }
+  .product-img-wrap { min-height: 400px; }
+  .product-info { padding: 2rem; border-left: none; border-top: 1px solid var(--border); }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .gallery-item { aspect-ratio: 1; }
+  .gallery-item:nth-child(1) .gallery-img-wrap { height: 100%; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .review-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .social-grid { gap: 1rem; }
+  .newsletter-form { flex-direction: column; }
+  .newsletter-form input { border-right: 1px solid var(--border); border-bottom: none; }
+  .gallery-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 44px; }
+  .social-grid { flex-direction: column; align-items: center; }
+  .gallery-grid { grid-template-columns: 1fr; gap: 8px; }
+  .gallery-item { aspect-ratio: 1; }
+}
+.image-lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10010;
+  background: rgba(0,0,0,0.92);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.image-lightbox-overlay.active {
+  display: flex;
+}
+.image-lightbox-content {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  width: min(1100px, 100%);
+}
+.image-lightbox-content img {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 4rem);
+  object-fit: contain;
+  display: block;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.22s ease;
+  cursor: zoom-in;
+  touch-action: none;
+}
+.image-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.55);
+  color: var(--white);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.image-lightbox-close:hover {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.15);
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ─── CURSOR ────────────────────────────────────── */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+  .cursor {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--white); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+  }
+  .cursor-ring {
+    position: fixed; width: 36px; height: 36px;
+    border: 1px solid rgba(255,255,255,0.4); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s, left 0.08s linear, top 0.08s linear;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   ─── ORDER FORM MODAL (NEW — ADDED ONLY) ──────────
+   ═══════════════════════════════════════════════════ */
+.order-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 1000;
+  align-items: flex-start;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+.order-overlay.active {
+  display: flex;
+  animation: orderOverlayIn 0.35s var(--ease-out) both;
+}
+@keyframes orderOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.order-modal {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 580px;
+  margin: auto;
+  position: relative;
+  animation: orderModalIn 0.4s var(--ease-out) both;
+  overflow: hidden;
+}
+@keyframes orderModalIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Top gold accent bar */
+.order-modal::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-l), var(--gold));
+}
+
+.order-modal-head {
+  padding: 2.5rem 3rem 2rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.order-modal-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.3);
+  padding: 5px 14px;
+  margin-bottom: 1rem;
+}
+.order-modal-title {
+  font-family: var(--ff-display);
+  font-size: clamp(28px, 5vw, 40px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+}
+.order-modal-sub {
+  margin-top: 0.5rem;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.order-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  background: none;
+  font-family: var(--ff-body);
+}
+.order-modal-close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,169,110,0.05);
+}
+
+.order-modal-body {
+  padding: 2.5rem 3rem 3rem;
+}
+
+/* Form grid */
+.order-form { display: flex; flex-direction: column; gap: 0; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1px;
+  border-bottom: 1px solid var(--border);
+}
+.form-row.full { grid-template-columns: 1fr; }
+
+.form-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.form-field:last-child { border-right: none; }
+.form-row.full .form-field { border-right: none; }
+
+.form-field:focus-within {
+  background: rgba(201,169,110,0.03);
+}
+
+.form-field label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 1rem 1.25rem 0.3rem;
+  pointer-events: none;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--white);
+  font-family: var(--ff-body);
+  font-size: 13px;
+  font-weight: 300;
+  padding: 0.3rem 1.25rem 1rem;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.form-field select {
+  cursor: pointer;
+  background: transparent;
+  color: var(--white);
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23666' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.25rem center;
+  padding-right: 2.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.form-field select option {
+  background: #f4f4f4;
+  color: #080808;
+}
+.form-field select option:hover,
+.form-field select option:checked {
+  background: #d7edff;
+  color: #080808;
+}
+.form-field select::-ms-expand {
+  display: none;
+}
+.form-field textarea {
+  resize: none;
+  min-height: 80px;
+  line-height: 1.6;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: var(--mid); }
+
+/* Outer border wrapper */
+.form-fields-wrap {
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+.form-row:last-child { border-bottom: none; }
+
+/* Submit button */
+.btn-place-order {
+  width: 100%;
+  padding: 18px;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.15s, letter-spacing 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-place-order:hover {
+  background: var(--gold);
+  transform: translateY(-2px);
+}
+.btn-place-order:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-place-order .btn-text { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.btn-spinner {
+  display: none;
+  width: 14px; height: 14px;
+  border: 2px solid rgba(0,0,0,0.2);
+  border-top-color: var(--black);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-place-order.loading .btn-spinner { display: block; }
+.btn-place-order.loading .btn-label { opacity: 0.6; }
+
+/* Success state */
+.order-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 3rem;
+  gap: 1.5rem;
+  animation: successIn 0.5s var(--ease-out) both;
+}
+@keyframes successIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.order-success.visible { display: flex; }
+.success-icon {
+  width: 64px; height: 64px;
+  border: 1px solid rgba(201,169,110,0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+}
+.success-icon svg { width: 28px; height: 28px; stroke: var(--gold); }
+.success-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(201,169,110,0.3); padding: 5px 14px;
+}
+.success-title {
+  font-family: var(--ff-display);
+  font-size: 32px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--white);
+  line-height: 1;
+}
+.success-divider { width: 30px; height: 1px; background: var(--gold); }
+.success-msg {
+  font-size: 14px; font-weight: 300; color: var(--silver);
+  line-height: 1.8; max-width: 360px;
+}
+.btn-success-close {
+  margin-top: 0.5rem; padding: 13px 40px;
+  border: 1px solid var(--border); background: transparent; color: var(--white);
+  font-family: var(--ff-body); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-success-close:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+/* Error message */
+.form-error {
+  display: none;
+  font-size: 11px;
+  color: #e05555;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(224,85,85,0.25);
+  background: rgba(224,85,85,0.05);
+  margin-bottom: 1rem;
+}
+.form-error.visible { display: block; }
+
+/* Mobile form */
+@media (max-width: 600px) {
+  .order-modal-head { padding: 2rem 1.5rem 1.5rem; }
+  .order-modal-body { padding: 2rem 1.5rem 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-field { border-right: none; border-bottom: 1px solid var(--border); }
+  .form-field:last-child { border-bottom: none; }
+  .order-success { padding: 3rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ─── ANNOUNCE BAR ─── -->
+<div class="announce">🔥 Premier Drop bientôt disponible — Édition Limitée 2026 🔥</div>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">ARRIÈRE <span>EL GODEM</span></a>
+  <ul class="nav-links">
+    <li><a href="#hero">Accueil</a></li>
+    <li><a href="#premier-drop">Premier Drop</a></li>
+    <li><a href="#produit">Produit</a></li>
+    <li><a href="#lookbook">Lookbook</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPopup()">Commander</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#hero"          onclick="closeMobile()">Accueil</a>
+  <a href="#premier-drop" onclick="closeMobile()">Premier Drop</a>
+  <a href="#produit"       onclick="closeMobile()">Produit</a>
+  <a href="#lookbook"      onclick="closeMobile()">Lookbook</a>
+  <a href="#contact"       onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ─── HERO — IMG_6215.jpg ─── -->
+<section id="hero" class="hero">
+  <div class="hero-bg">
+    <img src="images/IMG_6215.jpg" alt="Campagne ARRIÈRE EL GODEM 2026" loading="eager" decoding="async" />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Collection 2026 · Édition Limitée</div>
+    <h1 class="hero-title">ARRIÈRE<br>EL GODEM</h1>
+    <p class="hero-subtitle">Toujours en avant. Jamais en arrière.</p>
+    <p class="hero-desc">Une collection conçue pour ceux qui avancent sans jamais regarder derrière eux. Un style minimaliste, moderne et audacieux qui représente l'ambition et la détermination.</p>
+    <a href="#produit" class="btn-hero">Découvrir le Drop</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── PREMIER DROP — IMG_6222.jpg ─── -->
+<section id="premier-drop" class="about-drop">
+  <div class="about-inner">
+    <div class="reveal about-visual">
+      <img src="images/IMG_6222.jpg" alt="Premier Drop ARRIÈRE EL GODEM" loading="lazy" decoding="async" />
+    </div>
+    <div>
+      <p class="sec-label reveal reveal-delay-1">Bientôt disponible</p>
+      <h2 class="sec-title reveal reveal-delay-1">Premier<br>Drop</h2>
+      <div class="divider reveal reveal-delay-2"></div>
+      <p class="sec-body reveal reveal-delay-2">Le premier drop d'ARRIÈRE EL GODEM marque le début de l'aventure.<br><br>Cette pièce a été créée pour représenter la discipline, la confiance et l'ambition. Un design simple, puissant et intemporel destiné à ceux qui veulent toujours aller plus loin.</p>
+      <ul class="about-list reveal reveal-delay-3">
+        <li>Design exclusif édition limitée</li>
+        <li>Qualité premium garantie</li>
+        <li>Livraison rapide &amp; sécurisée</li>
+        <li>Réservé aux premiers supporters</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRODUIT — IMG_6237.jpg ─── -->
+<section id="produit" class="product-section">
+  <div class="product-inner">
+    <p class="sec-label reveal" style="text-align:center; margin-bottom:3rem;">Pièce phare</p>
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="images/IMG_6237.jpg" alt="T-shirt Premier Drop ARRIÈRE EL GODEM" loading="lazy" decoding="async" />
+        <div class="product-badge">Édition Limitée</div>
+      </div>
+      <div class="product-info">
+        <p class="product-tag">Arrière El Godem — 2026</p>
+        <h2 class="product-name">T-Shirt<br>Premier Drop</h2>
+        <div class="product-price">69 DT</div>
+        <ul class="product-features">
+          <li>Heavyweight 360 GSM cotton</li>
+          <li>Oversized premium streetwear fit</li>
+          <li>Soft, breathable &amp; durable fabric</li>
+          <li>Luxury comfort for everyday wear</li>
+        </ul>
+        <p class="size-label">Choisir une taille</p>
+        <div class="size-options">
+          <button class="size-btn" onclick="selectSize(this)">S</button>
+          <button class="size-btn" onclick="selectSize(this)">M</button>
+          <button class="size-btn active" onclick="selectSize(this)">L</button>
+          <button class="size-btn" onclick="selectSize(this)">XL</button>
+        </div>
+        <button class="btn-order" onclick="showPopup()">Commander</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOOKBOOK ─── -->
+<section id="lookbook" class="gallery-section">
+  <div class="gallery-header reveal">
+    <div>
+      <p class="sec-label">Lookbook</p>
+      <h2 class="sec-title">Lookbook</h2>
+    </div>
+    <p style="font-size:12px; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase;">Collection 2026</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <div class="gallery-img-wrap">
+        <img src="images/IMG_6243.jpg" alt="Lookbook ARRIÈRE EL GODEM 01" loading="lazy" decoding="async" tabindex="0" role="button" data-lightbox="true" />
+      </div>
+      <div class="gallery-overlay"><span class="gallery-num">01</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-img-wrap">
+        <img src="images/IMG_6251.jpg" alt="Lookbook ARRIÈRE EL GODEM 02" loading="lazy" decoding="async" tabindex="0" role="button" data-lightbox="true" />
+      </div>
+      <div class="gallery-overlay"><span class="gallery-num">02</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-img-wrap">
+        <img src="images/IMG_6262.jpg" alt="Lookbook ARRIÈRE EL GODEM 03" loading="lazy" decoding="async" tabindex="0" role="button" data-lightbox="true" />
+      </div>
+      <div class="gallery-overlay"><span class="gallery-num">03</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-img-wrap">
+        <img src="images/IMG_6274.jpg" alt="Lookbook ARRIÈRE EL GODEM 04" loading="lazy" decoding="async" tabindex="0" role="button" data-lightbox="true" />
+      </div>
+      <div class="gallery-overlay"><span class="gallery-num">04</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-img-wrap">
+        <img src="images/IMG_6294.jpg" alt="Lookbook ARRIÈRE EL GODEM 05" loading="lazy" decoding="async" tabindex="0" role="button" data-lightbox="true" />
+      </div>
+      <div class="gallery-overlay"><span class="gallery-num">05</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-img-wrap">
+        <img src="images/IMG_6222.jpg" alt="Lookbook ARRIÈRE EL GODEM 06" loading="lazy" decoding="async" tabindex="0" role="button" data-lightbox="true" />
+      </div>
+      <div class="gallery-overlay"><span class="gallery-num">06</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOCIAL ─── -->
+<section id="social" class="social-section">
+  <p class="sec-label reveal">Communauté</p>
+  <h2 class="sec-title reveal">Suivez-nous</h2>
+  <p class="sec-body reveal" style="margin:0 auto; text-align:center;">Rejoignez la communauté ARRIÈRE EL GODEM sur les réseaux.</p>
+  <div class="social-grid">
+    <a class="social-card reveal reveal-delay-1" href="https://www.instagram.com/arriere_el_godem_?igsh=MWh4NGxleWhrdXhtdw==" target="_blank" rel="noopener" aria-label="Instagram">
+      <div class="social-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </div>
+      <span class="social-handle">@arriereel_godem</span>
+      <span class="social-name">Instagram</span>
+    </a>
+    <a class="social-card reveal reveal-delay-2" href="https://www.tiktok.com/@arriereelgodem.tn?_r=1&_t=ZS-97F6iFz5tII" target="_blank" rel="noopener" aria-label="TikTok">
+      <div class="social-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+        </svg>
+      </div>
+      <span class="social-handle">@arriereel_godem</span>
+      <span class="social-name">TikTok</span>
+    </a>
+  </div>
+</section>
+
+<!-- ─── NEWSLETTER ─── -->
+<section id="contact" class="newsletter-section">
+  <p class="sec-label reveal">Newsletter</p>
+  <h2 class="sec-title reveal">Restez informé</h2>
+  <p class="sec-body reveal" style="margin:0 auto; text-align:center;">Soyez les premiers à découvrir les nouveaux drops.</p>
+  <form class="newsletter-form reveal" onsubmit="handleSubscribe(event)">
+    <input type="email" id="email-input" placeholder="votre@email.com" required autocomplete="email" />
+    <button type="submit" class="btn-subscribe">S'inscrire</button>
+  </form>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">ARRIÈRE <span>EL GODEM</span></div>
+        <p class="footer-tagline">Toujours en avant. Jamais en arrière.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/arriere_el_godem_?igsh=MWh4NGxleWhrdXhtdw==" target="_blank" rel="noopener" class="footer-social" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@arriereelgodem.tn?_r=1&_t=ZS-97F6iFz5tII" target="_blank" rel="noopener" class="footer-social" aria-label="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading">Navigation</p>
+        <ul class="footer-links">
+          <li><a href="#hero">Accueil</a></li>
+          <li><a href="#premier-drop">Premier Drop</a></li>
+          <li><a href="#produit">Produit</a></li>
+          <li><a href="#lookbook">Lookbook</a></li>
+          <li><a href="#social">Réseaux</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Contact</p>
+        <ul class="footer-links">
+          <li><a href="mailto:contact@arriere-elgodem.tn">Email</a></li>
+          <li><a href="https://www.instagram.com/arriere_el_godem_?igsh=MWh4NGxleWhrdXhtdw==" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@arriereelgodem.tn?_r=1&_t=ZS-97F6iFz5tII" target="_blank" rel="noopener">TikTok</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 <span>ARRIÈRE EL GODEM</span> — Tous droits réservés.</p>
+      <p class="footer-copy" style="font-family:'DM Serif Display',serif; font-style:italic; color:var(--muted);">Toujours en avant.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── OLD POPUP (kept, never shown — overridden by order form) ─── -->
+<div class="popup-overlay" id="popup-overlay" onclick="handleOverlayClick(event)">
+  <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <button class="popup-close" onclick="hidePopup()" aria-label="Fermer">×</button>
+    <div class="popup-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+    </div>
+    <div class="popup-badge">Drop Officiel</div>
+    <h2 class="popup-title" id="popup-title">Drop bientôt</h2>
+    <div class="popup-divider"></div>
+    <p class="popup-msg">Merci pour votre intérêt.</p>
+    <p class="popup-msg">Le premier drop <strong>ARRIÈRE EL GODEM</strong> n'est pas encore disponible.</p>
+    <p class="popup-msg">La date officielle sera annoncée prochainement.<br>Revenez bientôt.</p>
+    <button class="btn-close-popup" onclick="hidePopup()">Fermer</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     ─── ORDER FORM MODAL (NEW — ADDED ONLY) ──────────
+     ═══════════════════════════════════════════════════ -->
+<div class="order-overlay" id="order-overlay" onclick="handleOrderOverlayClick(event)">
+  <div class="order-modal" id="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-modal-title">
+
+    <!-- Header -->
+    <div class="order-modal-head" id="order-modal-head">
+      <div class="order-modal-badge">Commander</div>
+      <h2 class="order-modal-title" id="order-modal-title">Passer<br>Commande</h2>
+      <p class="order-modal-sub">T-Shirt Premier Drop · Édition Limitée 2026 · 69 DT</p>
+      <button class="order-modal-close" onclick="hideOrderModal()" aria-label="Fermer">×</button>
+    </div>
+
+    <!-- Form body -->
+    <div class="order-modal-body" id="order-form-body">
+      <form class="order-form" id="order-form" onsubmit="submitOrder(event)" novalidate>
+
+        <div class="form-error" id="form-error"></div>
+
+        <div class="form-fields-wrap">
+
+          <!-- Row 1: Prénom / Nom -->
+          <div class="form-row">
+            <div class="form-field">
+              <label for="of-firstname">First Name</label>
+              <input type="text" id="of-firstname" name="first_name" placeholder="Votre prénom" required autocomplete="given-name" />
+            </div>
+            <div class="form-field">
+              <label for="of-lastname">Last Name</label>
+              <input type="text" id="of-lastname" name="last_name" placeholder="Votre nom" required autocomplete="family-name" />
+            </div>
+          </div>
+
+          <!-- Row 2: Email / Téléphone -->
+          <div class="form-row">
+            <div class="form-field">
+              <label for="of-email">Email</label>
+              <input type="email" id="of-email" name="email" placeholder="votre@email.com" required autocomplete="email" />
+            </div>
+            <div class="form-field">
+              <label for="of-phone">Téléphone</label>
+              <input type="tel" id="of-phone" name="phone" placeholder="+216 XX XXX XXX" required autocomplete="tel" />
+            </div>
+          </div>
+
+          <!-- Row 3: Address (full width) -->
+          <div class="form-row full">
+            <div class="form-field">
+              <label for="of-address">Adresse complète</label>
+              <input type="text" id="of-address" name="address" placeholder="Enter your full address (example: Rue 26 Ahmed Ibn Abi Ziad)" required />
+            </div>
+          </div>
+
+          <!-- Row 4: State / Size -->
+          <div class="form-row">
+            <div class="form-field">
+              <label for="state">Select your state</label>
+              <select id="state" name="state" required>
+                <option value="Tunis">Tunis</option>
+                <option value="Ariana">Ariana</option>
+                <option value="Ben Arous">Ben Arous</option>
+                <option value="Manouba">Manouba</option>
+                <option value="Nabeul">Nabeul</option>
+                <option value="Zaghouan">Zaghouan</option>
+                <option value="Bizerte">Bizerte</option>
+                <option value="Béja">Béja</option>
+                <option value="Jendouba">Jendouba</option>
+                <option value="Kef">Kef</option>
+                <option value="Siliana">Siliana</option>
+                <option value="Sousse">Sousse</option>
+                <option value="Monastir">Monastir</option>
+                <option value="Mahdia">Mahdia</option>
+                <option value="Sfax">Sfax</option>
+                <option value="Kairouan">Kairouan</option>
+                <option value="Kasserine">Kasserine</option>
+                <option value="Sidi Bouzid">Sidi Bouzid</option>
+                <option value="Gabès">Gabès</option>
+                <option value="Médenine">Médenine</option>
+                <option value="Tataouine">Tataouine</option>
+                <option value="Gafsa">Gafsa</option>
+                <option value="Tozeur">Tozeur</option>
+                <option value="Kebili">Kebili</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="of-size">Taille</label>
+              <select id="of-size" name="size" required>
+                <option value="" disabled selected>Choisir...</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L" selected>L</option>
+                <option value="XL">XL</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 5: Quantité -->
+          <div class="form-row full">
+            <div class="form-field">
+              <label for="of-qty">Quantité</label>
+              <select id="of-qty" name="quantity" required>
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+
+        </div><!-- /.form-fields-wrap -->
+
+        <button type="submit" class="btn-place-order" id="btn-place-order">
+          <span class="btn-text">
+            <span class="btn-spinner"></span>
+            <span class="btn-label">Placer la commande</span>
+          </span>
+        </button>
+
+      </form>
+    </div><!-- /#order-form-body -->
+
+    <!-- Success state (hidden by default) -->
+    <div class="order-success" id="order-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+        </svg>
+      </div>
+      <div class="success-badge">Commande reçue</div>
+      <h3 class="success-title">Merci pour<br>votre commande</h3>
+      <div class="success-divider"></div>
+      <p class="success-msg">Thank you for your order. We will contact you soon.</p>
+      <button class="btn-success-close" onclick="hideOrderModal()">Fermer</button>
+    </div>
+
+  </div><!-- /.order-modal -->
+</div><!-- /.order-overlay -->
+
+<!-- Image Lightbox (Lookbook only) -->
+<div class="image-lightbox-overlay" id="image-lightbox">
+  <div class="image-lightbox-content" role="dialog" aria-modal="true" aria-label="Aperçu image">
+    <button class="image-lightbox-close" aria-label="Fermer">×</button>
+    <img src="" alt="" />
+  </div>
+</div>
+
+
+<script>
+/* ══════════════════════════════════════════════════
+   EXISTING SCRIPTS — UNCHANGED
+   ══════════════════════════════════════════════════ */
+
+/* ── CURSOR ── */
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+if (cursor && ring && window.matchMedia('(pointer: fine)').matches) {
+  let rx = 0, ry = 0, mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  }, { passive: true });
+  (function tick() {
+    rx += (mx - rx) * 0.13; ry += (my - ry) * 0.13;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(tick);
+  })();
+  document.querySelectorAll('a,button,.gallery-item,.size-btn,.social-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.cssText += ';width:14px;height:14px;background:var(--gold)';
+      ring.style.cssText += ';width:52px;height:52px;border-color:rgba(201,169,110,0.5)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.cssText += ';width:8px;height:8px;background:var(--white)';
+      ring.style.cssText += ';width:36px;height:36px;border-color:rgba(255,255,255,0.4)';
+    });
+  });
+}
+
+/* ── SCROLL REVEAL ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── MOBILE MENU ── */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+let menuOpen = false;
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobileMenu.classList.toggle('open', menuOpen);
+  const [s0,s1,s2] = hamburger.querySelectorAll('span');
+  s0.style.transform = menuOpen ? 'translateY(6px) rotate(45deg)' : '';
+  s1.style.opacity   = menuOpen ? '0' : '';
+  s2.style.transform = menuOpen ? 'translateY(-6px) rotate(-45deg)' : '';
+});
+function closeMobile() {
+  menuOpen = false; mobileMenu.classList.remove('open');
+  hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+}
+
+/* ── SIZE ── */
+function selectSize(btn) {
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  /* Sync selected size to order form */
+  const sizeMap = { 'S':'S','M':'M','L':'L','XL':'XL' };
+  const label = btn.textContent.trim();
+  const sel = document.getElementById('of-size');
+  if (sel && sizeMap[label]) sel.value = sizeMap[label];
+}
+
+/* ── OLD POPUP — kept intact, never shown (showPopup now opens order form) ── */
+function hidePopup() {
+  document.getElementById('popup-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('popup-overlay')) hidePopup();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { hidePopup(); hideOrderModal(); } });
+
+/* ── NEWSLETTER ── */
+function handleSubscribe(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ Inscrit !'; btn.style.background='#2a7a4f'; btn.style.color='#fff';
+  document.getElementById('email-input').value = '';
+  setTimeout(() => { btn.textContent="S'inscrire"; btn.style.background=btn.style.color=''; }, 3000);
+}
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').style.borderBottomColor = window.scrollY > 60 ? '#2a2a2a' : '#1a1a1a';
+}, { passive: true });
+
+
+/* ══════════════════════════════════════════════════
+   NEW — ORDER FORM + EMAILJS
+   ══════════════════════════════════════════════════ */
+
+/* Init EmailJS */
+(function() {
+  emailjs.init({ publicKey: '-07ZvolAcmhY7-Gs4' });
+})();
+
+/* showPopup is now overridden to open the order form instead */
+function showPopup() {
+  const overlay = document.getElementById('order-overlay');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  /* Reset to form view in case success was shown before */
+  document.getElementById('order-form-body').style.display = '';
+  document.getElementById('order-modal-head').style.display = '';
+  document.getElementById('order-success').classList.remove('visible');
+  document.getElementById('form-error').classList.remove('visible');
+  document.getElementById('form-error').textContent = '';
+  /* Sync size from product page selection */
+  const activeSize = document.querySelector('.size-btn.active');
+  if (activeSize) {
+    const sel = document.getElementById('of-size');
+    if (sel) sel.value = activeSize.textContent.trim();
+  }
+}
+
+function hideOrderModal() {
+  const overlay = document.getElementById('order-overlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOrderOverlayClick(e) {
+  if (e.target === document.getElementById('order-overlay')) hideOrderModal();
+}
+
+async function submitOrder(e) {
+  e.preventDefault();
+
+  const errorEl = document.getElementById('form-error');
+  errorEl.classList.remove('visible');
+  errorEl.textContent = '';
+
+  /* Collect values */
+  const firstname = document.getElementById('of-firstname').value.trim();
+  const lastname  = document.getElementById('of-lastname').value.trim();
+  const email     = document.getElementById('of-email').value.trim();
+  const phone     = document.getElementById('of-phone').value.trim();
+  const address   = document.getElementById('of-address').value.trim();
+  const state     = document.getElementById('state').value;
+  const size      = document.getElementById('of-size').value;
+  const quantity  = document.getElementById('of-qty').value;
+
+  /* Basic validation */
+  if (!firstname || !lastname || !email || !phone || !address || !state || !size || !quantity) {
+    errorEl.textContent = 'Veuillez remplir tous les champs obligatoires.';
+    errorEl.classList.add('visible');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.textContent = 'Adresse email invalide.';
+    errorEl.classList.add('visible');
+    return;
+  }
+
+  /* Order date */
+  const now = new Date();
+  const orderDate = now.toLocaleDateString('fr-FR', {
+    weekday:'long', year:'numeric', month:'long', day:'numeric',
+    hour:'2-digit', minute:'2-digit'
+  });
+
+  /* Loading state */
+  const btn = document.getElementById('btn-place-order');
+  btn.disabled = true;
+  btn.classList.add('loading');
+  btn.querySelector('.btn-label').textContent = 'Envoi en cours...';
+
+  try {
+    await emailjs.send('service_tejsqo9', 'template_kpu46h7', {
+      first_name: firstname,
+      last_name: lastname,
+      email,
+      phone,
+      address,
+      state,
+      size,
+      quantity,
+      receiver_email: 'ariereelgodem@gmail.com',
+      order_date: orderDate,
+      product: 'T-Shirt Premier Drop — ARRIÈRE EL GODEM',
+      price: '69 DT'
+    });
+
+    /* Show success */
+    document.getElementById('order-form-body').style.display = 'none';
+    document.getElementById('order-modal-head').style.display = 'none';
+    document.getElementById('order-success').classList.add('visible');
+
+    /* Reset form for next use */
+    document.getElementById('order-form').reset();
+
+  } catch (err) {
+    errorEl.textContent = 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.';
+    errorEl.classList.add('visible');
+    console.error('EmailJS error:', err);
+  } finally {
+    btn.disabled = false;
+    btn.classList.remove('loading');
+    btn.querySelector('.btn-label').textContent = 'Placer la commande';
+  }
+}
+
+/* ───────────────────────────────────────────────────
+   Enhanced Lightbox — Lookbook + Product image
+   - Targets `.gallery-item` images and `.product-img-wrap img`
+   - Alt+click on `.btn-order` opens product preview (non-invasive)
+   - Click toggles zoom; wheel adjusts zoom; double-tap toggles on mobile
+   ─────────────────────────────────────────────────── */
+(function(){
+  const overlay = document.getElementById('image-lightbox');
+  if (!overlay) return;
+  const imgEl = overlay.querySelector('img');
+  const closeBtn = overlay.querySelector('.image-lightbox-close');
+
+  let scale = 1;
+  const minScale = 1;
+  const maxScale = 4;
+
+  function setScale(s, originX, originY){
+    scale = Math.min(maxScale, Math.max(minScale, s));
+    if (typeof originX === 'number' && typeof originY === 'number') {
+      imgEl.style.transformOrigin = `${originX}px ${originY}px`;
+    } else {
+      imgEl.style.transformOrigin = 'center center';
+    }
+    imgEl.style.transform = `scale(${scale})`;
+    imgEl.style.cursor = scale > 1 ? 'zoom-out' : 'zoom-in';
+  }
+
+  function openLightbox(src, alt, originX, originY){
+    imgEl.src = src || '';
+    imgEl.alt = alt || '';
+    setScale(1);
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // make image keyboard-focusable for accessibility
+    imgEl.tabIndex = -1;
+    setTimeout(()=> imgEl.focus && imgEl.focus(), 60);
+  }
+
+  function closeLightbox(){
+    overlay.classList.remove('active');
+    imgEl.src = '';
+    setScale(1);
+    document.body.style.overflow = '';
+  }
+
+  // Global image handler: open any image (except the hero) in the same lightbox
+  // This creates a unified behavior across the site without changing layout.
+  document.addEventListener('click', e => {
+    const img = e.target.closest('img');
+    if (!img) return;
+    // ignore images inside the lightbox overlay itself
+    if (overlay.contains(img)) return;
+    // ignore the main hero image (or anything inside #hero)
+    if (img.closest('#hero')) return;
+    // open the clicked image
+    e.preventDefault();
+    openLightbox(img.src, img.alt, e.offsetX, e.offsetY);
+  });
+
+  // Keyboard support: Enter on focused image opens lightbox (except hero)
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    const el = document.activeElement;
+    if (!el || el.tagName !== 'IMG') return;
+    if (overlay.contains(el)) return;
+    if (el.closest('#hero')) return;
+    openLightbox(el.src, el.alt);
+  });
+
+  // Set cursor affordance for all images except hero (non-invasive)
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.closest('#hero')) img.style.cursor = 'zoom-in';
+  });
+
+  // Commander preview behavior removed to avoid changing product interactions
+
+  // Close interactions
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Click image to toggle zoom
+  imgEl.addEventListener('click', e => {
+    if (scale > 1) setScale(1);
+    else setScale(2, e.offsetX, e.offsetY);
+  });
+
+  // Wheel to zoom (desktop)
+  imgEl.addEventListener('wheel', e => {
+    e.preventDefault();
+    const delta = -e.deltaY;
+    const step = 0.1;
+    const newScale = scale + (delta > 0 ? step : -step);
+    const rect = imgEl.getBoundingClientRect();
+    const originX = e.clientX - rect.left;
+    const originY = e.clientY - rect.top;
+    setScale(newScale, originX, originY);
+  }, { passive: false });
+
+  // Double-tap to zoom (mobile)
+  let lastTap = 0;
+  imgEl.addEventListener('touchend', e => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      if (scale > 1) setScale(1);
+      else setScale(2);
+    }
+    lastTap = now;
+  });
+
+})();
+</script>
+</body>
+</html>

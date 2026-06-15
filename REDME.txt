@@ -1,0 +1,26 @@
+ARRIÈRE EL GODEM — Website Setup
+==================================
+
+FOLDER STRUCTURE:
+  arriere-el-godem/
+  ├── index.html          ← The website file
+  ├── images/             ← Put all your photos here
+  │   ├── IMG_6215.jpg    → Hero (full-screen background)
+  │   ├── IMG_6222.jpg    → About / Premier Drop section
+  │   ├── IMG_6237.jpg    → Featured Product card
+  │   ├── IMG_6243.jpg    → Lookbook slot 01 (large, spans 2 rows)
+  │   ├── IMG_6251.jpg    → Lookbook slot 02
+  │   ├── IMG_6262.jpg    → Lookbook slot 03
+  │   ├── IMG_6274.jpg    → Lookbook slot 04
+  │   └── IMG_6294.jpg    → Lookbook slot 05
+  └── README.txt          ← This file
+
+HOW TO USE:
+1. Copy all your photos into the "images/" folder
+2. Make sure filenames match exactly (case-sensitive)
+3. Open index.html in any browser — images appear instantly
+
+NOTES:
+- If an image is missing, the slot shows a dark placeholder (no broken icon)
+- The website is fully responsive (mobile, tablet, desktop)
+- No internet connection required (fonts load from Google Fonts)
